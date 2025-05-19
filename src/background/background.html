@@ -1,7 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<script type="module" src="background.js"></script>
-	</head>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>News Feed Eradicator Background</title>
+	<!-- We'll use this file as a bridge to load the actual background.js service worker -->
+	<script>
+		// Register the service worker
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', function () {
+				navigator.serviceWorker.register('background.js')
+					.then(function (registration) {
+						console.log('ServiceWorker registration successful with scope: ', registration.scope);
+					}, function (err) {
+						console.log('ServiceWorker registration failed: ', err);
+					});
+			});
+		}
+	</script>
+</head>
+
+<body>
+	<!-- This is just a bridge HTML file -->
+</body>
+
 </html>
